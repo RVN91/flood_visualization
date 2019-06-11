@@ -31,7 +31,7 @@ function(d){ // 2003-09-10 05:16:00
 // Use the data set within this scope
 function(data) {
 	// List of groups (here I have one group per column)
-	var allGroup = ["Event 1", "Event 2", "Event 3"]
+	var allGroup = ["intensity_gauge_2", "Event 2", "Event 3"]
 	
 	// Add the options to the button
 	d3.select("#selectButton")
