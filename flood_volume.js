@@ -6,22 +6,22 @@
  */
 
 // Set the dimensions and margins of the graph
-var margin = {top: 10, right: 40, bottom: 60, left: 30},
-	width = 300 - margin.left - margin.right,
-	height = 400 - margin.top - margin.bottom;
+var margin_flood = {top: 10, right: 40, bottom: 60, left: 40},
+	width = 300 - margin.left - margin_flood.right,
+	height = 300 - margin_flood.top - margin_flood.bottom;
 
 // Append SVG to div element
 const svg_flood_volume = d3.select("#flood_volume")
 	.append("svg")
-	.attr("width", width + margin.left + margin.right)
-	.attr("height", height + margin.top + margin.bottom)
+	.attr("width", width + margin_flood.left + margin_flood.right)
+	.attr("height", height + margin_flood.top + margin_flood.bottom)
 	// Translate this svg element to leave some margin.
 	.append("g")
-	.attr("transform", "translate(" + margin.left + "," 
+	.attr("transform", "translate(" + margin_flood.left + "," 
 	      + margin.top + ")");
 
 // Read the data
-d3.csv("https://raw.githubusercontent.com/RVN91/personal_webpage/master/flood_volume.csv",
+d3.csv("flood_depth/flood_volume.csv",
 	// Specify the date format
 	function(d){ // 2003-09-10 05:16:00
 		return {date: d3.timeParse("%Y-%m-%d %H:%M:%S")(d.date), flood_volume: d.flood_volume}
@@ -51,11 +51,12 @@ d3.csv("https://raw.githubusercontent.com/RVN91/personal_webpage/master/flood_vo
 			.attr("text-anchor", "middle")  
 			.style("font-size", "20px") 
 			.text("Flood Volume [m^3]");
-		
+	
 		// X scale and Axis
 		var y = d3.scaleLinear()
-			.domain(d3.extent(data, function(d) { return d.flood_volume; })) // This is the min and the max of the data: 0 to 100 if percentages
-			.range([height, 0]);                                                  // This is the corresponding value I want in Pixel
+			.domain([0, 2000])
+			//.domain(d3.extent(data, function(d) { return d.flood_volume; })) // This is the min and the max of the data: 0 to 100 if percentages
+			.range([height, 0]);                                             // This is the corresponding value I want in Pixel
 		
 		var yAxis = d3.axisLeft(y)
 		

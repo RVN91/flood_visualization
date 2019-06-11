@@ -1,7 +1,8 @@
-# nexrad-d3-experiment
-Figuring out how to display NEXRAD radar data with d3. This project is mostly a playground for me to learn about
-NEXRAD data and explore how to visualize data with D3 and Canvas.
+# Visualization of integrated flood modeling and radar precipitation fields
 
+Build upon Joanne Cheng's great work with visualization of 
+NEXRAD radar data:
+https://github.com/joannecheng/nexrad-d3-experiment
 
 ### To Run:
 ```shell

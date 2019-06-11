@@ -17,7 +17,7 @@
 
 /* Bind animation start to button */
 let counter = 0; // Frame counter
-let endFrame = 40; // Last frame to be displayed
+let endFrame = 374; // Last frame to be displayed
 d3.select("#startButton")
 	.on("click", function() {
 		console.log("click!")
@@ -25,12 +25,21 @@ d3.select("#startButton")
 		// through the animation
 		var refreshIntervalId = setInterval(
 			                function(){
+			
 			// If it is not the first 
 			// frame, remove the previously frame
 			if (counter !== 0) {
 				// Remove earlier radar 
 				// and flood canvas
 				d3.select('#canvas_radar_viz_' 
+					  + (counter-1))
+				.style('display', 'none');
+				
+				d3.select('#canvas_flood_viz_' 
+					  + (counter-1))
+				.style('display', 'none');
+				
+				d3.select('#canvas_flood_ecmwf_viz_' 
 					  + (counter-1))
 				.style('display', 'none');
 			}
@@ -50,6 +59,14 @@ d3.select("#startButton")
 				      '#canvas_radar_viz_' + counter);
 				radarToShow.style('display', 'inline');
 				
+				const floodToShow = d3.select(
+				      '#canvas_flood_viz_' + counter);
+				floodToShow.style('display', 'inline');
+				
+				const floodEcmwfToShow = d3.select(
+				      '#canvas_flood_ecmwf_viz_' + counter);
+				floodEcmwfToShow.style('display', 'inline');
+				
 				// Make forecast points visible
 				var i; // counter for forecast frames
 				for (i = 1; i < 60; i++) {
@@ -59,6 +76,15 @@ d3.select("#startButton")
 				
 				d3.select('#volume_viz_' + (counter + i))
 					.attr("fill", "#ff0000")
+					.attr("opacity", 1);
+				
+					// Make lines visible
+				d3.select('#line_viz_' + (counter + i))
+					.attr("stroke", "#ff0000")
+					.attr("opacity", 1);
+				
+				d3.select('#line_flood_viz_' + (counter+ i))
+					.attr("stroke", "#ff0000")
 					.attr("opacity", 1);
 				}
 				
@@ -73,13 +99,13 @@ d3.select("#startButton")
 				
 				// Make lines visible
 				d3.select('#line_viz_' + counter)
-					.attr("fill", "#0000ff")
+					.attr("stroke", "#0000ff")
 					.attr("opacity", 1);
 				
 				d3.select('#line_flood_viz_' + counter)
-					.attr("fill", "#0000ff")
+					.attr("stroke", "#0000ff")
 					.attr("opacity", 1);
 			}
 			counter += 1; // Increase the frame count			
-		}, 150); 		
+		}, 100); 		
 	})

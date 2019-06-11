@@ -4,6 +4,8 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/topojson.v2.min.js"></script>
 <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+<script src="https://d3js.org/d3-queue.v3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
 
 <style>
 circle.marker {
@@ -28,6 +30,10 @@ path.state-boundary {
 	display: inline-block;
 }
 
+#startButton {
+	float: right;
+}
+
 #wrapper_maps {
 	overflow: hidden;
 }
@@ -40,17 +46,14 @@ path.state-boundary {
 	display:inline-block;
 }
 
+#flood_ecmwf_map {
+	display:inline-block;
+}
+
 </style>
 
 </head>
 <body>
-
-	
-<div id="startButton">
-<input name="updateButton" 
-type="button" 
-value="Start"/>
-</div>
 
 <!-- Wrap of rainfall and flood volume graphs -->
 <div id="wrapper_maps">
@@ -60,8 +63,11 @@ value="Start"/>
 
 <!-- Map of flood extent -->
 <div id="flood_map"></div>
-</div>
 
+<!-- Map of flood ECMWF extent -->
+<div id="flood_ecmwf_map"></div>
+
+</div>
 <!-- Wrap of rainfall and flood volume graphs -->
 <div id="wrapper_rainfall_flood_volume">
 
@@ -70,22 +76,32 @@ value="Start"/>
 
 <!-- Plot of flood volume -->
 <div id="flood_volume"></div>
+
+<div id="startButton">
+<h2>Options:</h2>
+Start animation:
+<input name="updateButton" 
+type="button" 
+value="Start"/>
+
+<!-- Initialize a select button -->
+Select event:
+<select id="selectButton"></select>
+
+<!-- Initialize a select button -->
+Select forecast:
+<select id="selectForecast"></select>
+</div>
 </div>
 
+
 <script type="text/javascript" src="radar.js"></script>
+<script type="text/javascript" src="flood.js"></script>
+<script type="text/javascript" src="flood_ecmwf.js"></script>
 <script type="text/javascript" src="animate.js"></script>
 <script type="text/javascript" src="rainfall_graph.js"></script>
 <script type="text/javascript" src="flood_volume.js"></script>
 <script type="text/javascript" src="main.js"></script>
 
-<!-- Initialize a select button -->
-<select id="selectButton"></select>
-
-<!-- Initialize a start and reset button -->
-<button id="start">Start</button>
-<button id="clear" style="margin-left: 82px">Clear Graph</button>
-
-<!-- Initialize a select button -->
-<select id="selectForecast">Select forecast</select>
 </body>
 </html>

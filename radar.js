@@ -26,7 +26,7 @@
  *
  */
 
-function load(error, array) {
+function load_radar(error, array) {
 /*
  * Loads elements from que as array and sends each nested elements
  * as array to draw function
@@ -36,14 +36,14 @@ function load(error, array) {
 		console.error("there was an error", error)
 		return
 	}
-	
+		
 	// Pass the arrays to the drawing function
 	for (let index in array) {
-		draw(array[index], index);
+		draw_radar(array[index], index);
 	}
 }
 
-function draw(dataArray, index) {
+function draw_radar(dataArray, index) {
 /*
  * Draws array with geocoordinates and values
  *
@@ -60,9 +60,9 @@ function draw(dataArray, index) {
  * 	dataArray: Array with coordinates and values
  * 	index:     Index of the current frame
 */
-	// Create canvas with the current frame
-	
-	const canvas = svg_radar_exp.append("foreignObject")
+	// Create canvas with the current frame	
+	const canvas = svg_map_radar 
+		.append("foreignObject")
 		.attr("width", w)
 		.attr("height", h)
 		.attr("opacity", 0.5)
@@ -95,10 +95,10 @@ function draw(dataArray, index) {
 		   .classed("rect", true);
 	
 	// Draw canvas
-	drawCanvas(dataContainer, context, canvas);
+	drawCanvasRadar(dataContainer, context, canvas);
 }
 
-function drawCanvas(dataContainer, context, canvas) {
+function drawCanvasRadar(dataContainer, context, canvas) {
 /*
  * Converts the DOM elements to canvas drawing
  */
@@ -127,12 +127,10 @@ function drawCanvas(dataContainer, context, canvas) {
 		const coords = projection([lon, lat]);
 
 		context.beginPath();
-		context.fillStyle = colorScale(val);
+		context.fillStyle = colorScaleRadar(val);
 		// rect(x,y,width,height)
-		context.rect(coords[0], coords[1], 14, 14);
+		context.rect(coords[0], coords[1], 30, 30);
 		context.fill();
 		context.closePath();
 	})
 }
-
-

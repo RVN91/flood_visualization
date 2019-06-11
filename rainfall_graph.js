@@ -8,7 +8,7 @@
 // Set the dimensions and margins of the graph
 var margin = {top: 10, right: 40, bottom: 60, left: 30},
 	width = 300 - margin.left - margin.right,
-	height = 400 - margin.top - margin.bottom;
+	height = 300 - margin.top - margin.bottom;
 
 // Append SVG to div element
 const svg_rainfall = d3.select("#rainfall_radar")
@@ -68,7 +68,8 @@ function(data) {
 	
 	// X scale and Axis
 	var y = d3.scaleLinear()
-		.domain(d3.extent(data, function(d) { return d.intensity_gauge_1; })) // This is the min and the max of the data: 0 to 100 if percentages
+		//.domain(d3.extent(data, function(d) { return d.intensity_gauge_1; })) // This is the min and the max of the data: 0 to 100 if percentages
+		.domain([0, 300])
 		.range([height, 0]);                                                  // This is the corresponding value I want in Pixel
 	
 	var yAxis = d3.axisLeft(y)
